@@ -1,25 +1,31 @@
-// swift-tools-version:4.0
-
-//
-//  Package.swift
-//  MastodonKit
-//
-//  Created by Ornithologist Coder on 4/9/17.
-//  Copyright © 2017 MastodonKit. All rights reserved.
-//
+// swift-tools-version:5.7
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
-// swiftlint:disable prefixed_toplevel_constant
-
 let package = Package(
-    name: "MastodonKit",
+    name: "MastadonKit",
+    platforms: [.iOS(.v15), .macOS(.v12)],
     products: [
-        .library(name: "MastodonKit", targets: ["MastodonKit"])
+        // Products define the executables and libraries a package produces, and make them visible to other packages.
+        .library(
+            name: "MastadonKit",
+            targets: ["MastadonKit"])
     ],
-    dependencies: [],
+    dependencies: [
+        // Dependencies declare other packages that this package depends on.
+        // .package(url: /* package url */, from: "1.0.0"),
+    ],
     targets: [
-        .target(name: "MastodonKit", dependencies: []),
-        .testTarget(name: "MastodonKitTests", dependencies: ["MastodonKit"])
+        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
+        // Targets can depend on other targets in this package, and on products in packages this package depends on.
+        .target(
+            name: "MastadonKit",
+            dependencies: []),
+        .executableTarget(name: "MastodonExecutable",
+                          dependencies: ["MastadonKit"]),
+        .testTarget(
+            name: "MastadonKitTests",
+            dependencies: ["MastadonKit"]),
     ]
 )
