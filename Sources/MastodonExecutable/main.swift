@@ -6,9 +6,14 @@
 //
 
 import Foundation
-import MastadonKit
+import MastodonKit
 
 
-let client = Client(baseURL: "https://mastodon.social")
+let client = Client(baseURL: "https://loom.nyc")
+
+let timelines = try? await client.run(Timelines.public()).value
 
 
+for value in timelines ?? [] {
+    print(value.content)
+}
